@@ -1,6 +1,6 @@
 ﻿namespace APS2020.Views
 {
-    partial class PaginaInicial
+    partial class MainMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // PaginaInicial
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "PaginaInicial";
-            this.Text = "PaginaInicial";
-            this.ResumeLayout(false);
-
+            this.Text = "MainMenu";
         }
 
         #endregion

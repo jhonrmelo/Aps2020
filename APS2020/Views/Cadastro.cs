@@ -1,6 +1,8 @@
 ﻿using Domain.Enum;
 using Domain.Models;
+
 using Service;
+
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -9,21 +11,20 @@ namespace APS2020.Views
 {
     public partial class Cadastro : Form
     {
-        private readonly UsuarioService service;
-
+        private UsuarioService _usuarioService;
         public Cadastro()
         {
             InitializeComponent();
-            this.service = new UsuarioService(new Repository.UsuarioRepository());
+            _usuarioService = new UsuarioService();
         }
 
-        private async void btnCadastrar_Click(object sender, System.EventArgs e)
+        private void btnCadastrar_Click(object sender, System.EventArgs e)
         {
             UsuarioModel model = new UsuarioModel();
             try
             {
                 model.Nome = txtNome.Text;
-                model.Usuario = txtUsuario.Text;
+                model.Login = txtUsuario.Text;
                 model.Senha = txtSenha.Text;
                 model.ConfirmarSenha = txtConfirmarSenha.Text;
                 model.Email = txtEmail.Text;
@@ -31,7 +32,7 @@ namespace APS2020.Views
                 model.Telefone = txtTelefone.Text;
                 model.IdNivelPermissao = (NivelPermissaoEnum)Convert.ToInt32(comboNivelPermissao.SelectedValue);
 
-                await Task.Run(() => { this.service.CriarUsuario(model); });
+                _usuarioService.CriarUsuario(model);
 
             }
             catch (ArgumentException arg)

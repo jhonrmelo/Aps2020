@@ -14,7 +14,7 @@ namespace Repository
             model.IdNivelPermissao = Domain.Enum.NivelPermissaoEnum.Cliente;
 
             string sqlQuery = @"INSERT INTO usuario 
-                                VALUES(0, @Nome, @Login, @Senha, @Email, @Telefone, @Idade, @IdNivelPermissao); 
+                                VALUES(0, @Nome, @Sobrenome, @Login, @Senha, @Email, @Telefone, @Idade, @IdNivelPermissao); 
                                 SELECT LAST_INSERT_ID();";
 
             return conn.Query<int>(sqlQuery, model).Single();

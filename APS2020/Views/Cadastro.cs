@@ -24,13 +24,14 @@ namespace APS2020.Views
             try
             {
                 model.Nome = txtNome.Text;
+                model.Sobrenome = txtNome.Text;
                 model.Login = txtUsuario.Text;
                 model.Senha = txtSenha.Text;
                 model.ConfirmarSenha = txtConfirmarSenha.Text;
                 model.Email = txtEmail.Text;
                 model.Idade = int.Parse(txtIdade.Text);
                 model.Telefone = txtTelefone.Text;
-                model.IdNivelPermissao = (NivelPermissaoEnum)Convert.ToInt32(comboNivelPermissao.SelectedValue);
+                //model.IdNivelPermissao = (NivelPermissaoEnum)Convert.ToInt32(comboNivelPermissao.SelectedValue);
 
                 _usuarioService.CriarUsuario(model);
 

@@ -3,6 +3,7 @@ CREATE DATABASE aps2020;
 CREATE TABLE Usuario (
      Id int  NOT NULL AUTO_INCREMENT,
      Nome varchar(255) NOT NULL,
+     Sobrenome varchar(255) NOT NULL,
      Login varchar(255) unique NOT NULL,
      Senha varchar(255) NOT NULL,
      Email varchar(255) unique NOT NULL,

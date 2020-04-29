@@ -10,6 +10,7 @@ namespace Domain
             UsuarioId = pUsuarioID;
             PermissaoId = pPermissaoID;
         }
+
         [ExplicitKey]
         public int Id { get; set; }
         public int UsuarioId { get; set; }

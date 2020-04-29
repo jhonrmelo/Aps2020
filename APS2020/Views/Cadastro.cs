@@ -58,5 +58,10 @@ namespace APS2020.Views
 
             return usuario;
         }
+
+        private void lblNivelPermissao_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

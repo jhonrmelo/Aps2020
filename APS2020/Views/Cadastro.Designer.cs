@@ -192,6 +192,7 @@
             this.lblNivelPermissao.Size = new System.Drawing.Size(98, 15);
             this.lblNivelPermissao.TabIndex = 1;
             this.lblNivelPermissao.Text = "Nível Permissão:";
+            this.lblNivelPermissao.Click += new System.EventHandler(this.lblNivelPermissao_Click);
             // 
             // btnCadastrar
             // 

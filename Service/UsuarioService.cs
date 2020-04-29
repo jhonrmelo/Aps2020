@@ -1,8 +1,7 @@
-﻿using Domain.Enum;
+﻿using Domain;
+using Domain.Enum;
 using Domain.Models;
-
 using Repository;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +10,22 @@ namespace Service
 {
     public class UsuarioService
     {
-        private readonly UsuarioRepository _usuarioRepository;
+        private  UsuarioRepository _usuarioRepository;
 
         public UsuarioService()
         {
             _usuarioRepository = new UsuarioRepository();
         }
 
-        public void CriarUsuario(UsuarioModel model)
+        public void CriarUsuario(UsuarioModel usuario)
         {
 
-            if (model.Senha != model.ConfirmarSenha)
+            if (usuario.Senha != usuario.ConfirmarSenha)
                 throw new ArgumentException("As senhas não correspondem");
 
-            model.Id = _usuarioRepository.CriarUsuario(model);
+            usuario.Id = _usuarioRepository.CriarUsuario(usuario);
 
+            _insertPermissoes(usuario);
         }
 
         public List<NivelPermissaoModel> GetNivelPermissao()
@@ -63,6 +63,19 @@ namespace Service
                 return true;
 
             return false;
+        }
+
+        private void _insertPermissoes(UsuarioModel usuario)
+        {
+            List<UsuarioXPermissaoModel> lstUsuarioPermissoes = new List<UsuarioXPermissaoModel>();
+
+            foreach (var permissao in usuario.Permissoes)
+            {
+                lstUsuarioPermissoes.Add(new UsuarioXPermissaoModel(permissao.Id, usuario.Id));
+            }
+
+            _usuarioRepository.InsertPermissoesXUsuario(lstUsuarioPermissoes);
+
         }
     }
 }

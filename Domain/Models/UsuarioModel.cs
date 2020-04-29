@@ -1,11 +1,14 @@
-﻿using Domain.Enum;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Domain.Models
 {
     public class UsuarioModel
     {
+
+        public UsuarioModel()
+        {
+            Permissoes = new List<NivelPermissaoModel>();
+        }
         public int Id { get; set; }
 
         public string Nome { get; set; }
@@ -25,7 +28,5 @@ namespace Domain.Models
         public int Idade { get; set; }
 
         public List<NivelPermissaoModel> Permissoes { get; set; }
-
-        public NivelPermissaoEnum IdNivelPermissao { get; set; }
     }
 }

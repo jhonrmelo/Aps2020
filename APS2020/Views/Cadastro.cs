@@ -4,6 +4,7 @@ using Domain.Models;
 using Service;
 
 using System;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,27 +21,42 @@ namespace APS2020.Views
 
         private void btnCadastrar_Click(object sender, System.EventArgs e)
         {
-            UsuarioModel model = new UsuarioModel();
             try
             {
-                model.Nome = txtNome.Text;
-                model.Sobrenome = txtNome.Text;
-                model.Login = txtUsuario.Text;
-                model.Senha = txtSenha.Text;
-                model.ConfirmarSenha = txtConfirmarSenha.Text;
-                model.Email = txtEmail.Text;
-                model.Idade = int.Parse(txtIdade.Text);
-                model.Telefone = txtTelefone.Text;
-                //model.IdNivelPermissao = (NivelPermissaoEnum)Convert.ToInt32(comboNivelPermissao.SelectedValue);
-
-                _usuarioService.CriarUsuario(model);
-
+                var usuario = _fillUsuario();
+                _fillPermissoes(usuario);
+                _usuarioService.CriarUsuario(usuario);
             }
-            catch (ArgumentException arg)
+            catch(Exception ex)
             {
-                //throw arg.Message;
+                MessageBox.Show(ex.Message);
             }
         }
 
+
+        private void _fillPermissoes(UsuarioModel usuario)
+        {
+            if (checkBoxCliente.Checked)
+                usuario.Permissoes.Add(new NivelPermissaoModel((int)NivelPermissaoEnum.Cliente));
+
+            if (checkBoxCliente.Checked)
+                usuario.Permissoes.Add(new NivelPermissaoModel((int)NivelPermissaoEnum.Servidor));
+        }
+
+        private UsuarioModel _fillUsuario()
+        {
+            UsuarioModel usuario = new UsuarioModel();
+
+            usuario.Nome = txtNome.Text;
+            usuario.Sobrenome = txtNome.Text;
+            usuario.Login = txtUsuario.Text;
+            usuario.Senha = txtSenha.Text;
+            usuario.ConfirmarSenha = txtConfirmarSenha.Text;
+            usuario.Email = txtEmail.Text;
+            usuario.Idade = int.Parse(txtIdade.Text);
+            usuario.Telefone = txtTelefone.Text;
+
+            return usuario;
+        }
     }
 }

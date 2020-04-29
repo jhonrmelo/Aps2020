@@ -1,7 +1,7 @@
 ﻿using Dapper;
-
+using Dapper.Contrib.Extensions;
+using Domain;
 using Domain.Models;
-
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,10 +11,8 @@ namespace Repository
     {
         public int CriarUsuario(UsuarioModel model)
         {
-            model.IdNivelPermissao = Domain.Enum.NivelPermissaoEnum.Cliente;
-
             string sqlQuery = @"INSERT INTO usuario 
-                                VALUES(0, @Nome, @Sobrenome, @Login, @Senha, @Email, @Telefone, @Idade, @IdNivelPermissao); 
+                                VALUES(0, @Nome, @Sobrenome, @Login, @Senha, @Email, @Telefone, @Idade); 
                                 SELECT LAST_INSERT_ID();";
 
             return conn.Query<int>(sqlQuery, model).Single();
@@ -44,6 +42,11 @@ namespace Repository
                                 WHERE up.UsuarioId = @usuarioId";
 
             return conn.Query<NivelPermissaoModel>(sqlQuery, new { usuarioId }).ToList();
+        }
+
+        public void InsertPermissoesXUsuario(List<UsuarioXPermissaoModel> lstPermissoes)
+        {
+            conn.Insert(lstPermissoes);
         }
     }
 }

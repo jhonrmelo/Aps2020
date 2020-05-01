@@ -2,6 +2,7 @@
 {
    public class NivelPermissaoModel
     {
+        public NivelPermissaoModel() { }
         public NivelPermissaoModel(int pId)
         {
             Id = pId;

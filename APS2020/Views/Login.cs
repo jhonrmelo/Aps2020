@@ -27,9 +27,10 @@ namespace APS2020.Views
         {
             try
             {
-                _usuarioService.VerifyUserLogin(txtLogin.Text, txtSenha.Text, (NivelPermissaoEnum)cbbNivelPermissao.SelectedValue);
+                var permissao = (NivelPermissaoEnum)cbbNivelPermissao.SelectedValue;
+                _usuarioService.VerifyUserLogin(txtLogin.Text, txtSenha.Text, permissao);
                 Hide();
-                new MainMenu().ShowDialog();
+                new MainMenu(permissao).ShowDialog();
             }
             catch (ArgumentException arg)
             {

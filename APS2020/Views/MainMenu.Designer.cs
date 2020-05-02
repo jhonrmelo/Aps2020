@@ -30,8 +30,8 @@
         {
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.menuItemMensagem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemMensagemServidor = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemMensagemCliente = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemUsuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemUsuarioCadatro = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,7 +40,8 @@
             this.menuBar.AutoSize = false;
             this.menuBar.BackColor = System.Drawing.SystemColors.ControlLight;
             this.menuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemMensagem});
+            this.menuItemMensagem,
+            this.menuItemUsuario});
             this.menuBar.Location = new System.Drawing.Point(0, 0);
             this.menuBar.Name = "menuBar";
             this.menuBar.Size = new System.Drawing.Size(808, 43);
@@ -51,27 +52,27 @@
             // 
             this.menuItemMensagem.BackColor = System.Drawing.SystemColors.Menu;
             this.menuItemMensagem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.menuItemMensagem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemMensagemServidor,
-            this.menuItemMensagemCliente});
             this.menuItemMensagem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.menuItemMensagem.ForeColor = System.Drawing.Color.Black;
             this.menuItemMensagem.Name = "menuItemMensagem";
             this.menuItemMensagem.Size = new System.Drawing.Size(89, 39);
             this.menuItemMensagem.Text = "Mensagens";
             // 
-            // menuItemMensagemServidor
+            // menuItemUsuario
             // 
-            this.menuItemMensagemServidor.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.menuItemMensagemServidor.Name = "menuItemMensagemServidor";
-            this.menuItemMensagemServidor.Size = new System.Drawing.Size(128, 22);
-            this.menuItemMensagemServidor.Text = "Servidor";
+            this.menuItemUsuario.BackColor = System.Drawing.SystemColors.Menu;
+            this.menuItemUsuario.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemUsuarioCadatro});
+            this.menuItemUsuario.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.menuItemUsuario.Name = "menuItemUsuario";
+            this.menuItemUsuario.Size = new System.Drawing.Size(73, 39);
+            this.menuItemUsuario.Text = "Usuarios";
             // 
-            // menuItemMensagemCliente
+            // menuItemUsuarioCadatro
             // 
-            this.menuItemMensagemCliente.Name = "menuItemMensagemCliente";
-            this.menuItemMensagemCliente.Size = new System.Drawing.Size(128, 22);
-            this.menuItemMensagemCliente.Text = "Cliente";
+            this.menuItemUsuarioCadatro.Name = "menuItemUsuarioCadatro";
+            this.menuItemUsuarioCadatro.Size = new System.Drawing.Size(130, 22);
+            this.menuItemUsuarioCadatro.Text = "Cadastro";
             // 
             // MainMenu
             // 
@@ -90,7 +91,7 @@
         #endregion
         private System.Windows.Forms.MenuStrip menuBar;
         private System.Windows.Forms.ToolStripMenuItem menuItemMensagem;
-        private System.Windows.Forms.ToolStripMenuItem menuItemMensagemServidor;
-        private System.Windows.Forms.ToolStripMenuItem menuItemMensagemCliente;
+        private System.Windows.Forms.ToolStripMenuItem menuItemUsuario;
+        private System.Windows.Forms.ToolStripMenuItem menuItemUsuarioCadatro;
     }
 }

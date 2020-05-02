@@ -63,5 +63,12 @@ namespace APS2020.Views
         {
 
         }
+
+        private void lblVoltar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Hide();
+            //Somente servidores podem entrar na tela de cadastro, logo devolvemos como servidor
+            new MainMenu(NivelPermissaoEnum.Servidor).ShowDialog();
+        }
     }
 }

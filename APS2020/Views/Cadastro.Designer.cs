@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cadastro));
             this.lblCadastro = new System.Windows.Forms.Label();
             this.lblNome = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
@@ -49,6 +50,7 @@
             this.txtSobrenome = new System.Windows.Forms.TextBox();
             this.checkBoxCliente = new System.Windows.Forms.CheckBox();
             this.checkBoxServidor = new System.Windows.Forms.CheckBox();
+            this.lblVoltar = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // lblCadastro
@@ -245,9 +247,23 @@
             this.checkBoxServidor.Text = "Servidor";
             this.checkBoxServidor.UseVisualStyleBackColor = true;
             // 
+            // lblVoltar
+            // 
+            this.lblVoltar.AutoSize = true;
+            this.lblVoltar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblVoltar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblVoltar.Location = new System.Drawing.Point(12, 9);
+            this.lblVoltar.Name = "lblVoltar";
+            this.lblVoltar.Size = new System.Drawing.Size(51, 20);
+            this.lblVoltar.TabIndex = 7;
+            this.lblVoltar.TabStop = true;
+            this.lblVoltar.Text = "Voltar";
+            this.lblVoltar.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblVoltar_LinkClicked);
+            // 
             // Cadastro
             // 
             this.ClientSize = new System.Drawing.Size(494, 396);
+            this.Controls.Add(this.lblVoltar);
             this.Controls.Add(this.checkBoxServidor);
             this.Controls.Add(this.checkBoxCliente);
             this.Controls.Add(this.txtSobrenome);
@@ -269,7 +285,9 @@
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.lblNome);
             this.Controls.Add(this.lblCadastro);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Cadastro";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,5 +316,6 @@
         private System.Windows.Forms.TextBox txtSobrenome;
         private System.Windows.Forms.CheckBox checkBoxCliente;
         private System.Windows.Forms.CheckBox checkBoxServidor;
+        private System.Windows.Forms.LinkLabel lblVoltar;
     }
 }

@@ -49,22 +49,5 @@ namespace Repository
             conn.Insert(lstPermissoes);
         }
 
-        public void testeInsert()
-        {
-            UsuarioModel model = new UsuarioModel()
-            {
-                Id = 0,
-                Email = "",
-                ConfirmarSenha = "",
-                Idade = 10,
-                Login = "",
-                Nome = "",
-                Senha = "",
-                Sobrenome = "",
-                Telefone = ""
-            };
-
-            CriarUsuario(model);
-        }
     }
 }

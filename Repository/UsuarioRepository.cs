@@ -9,13 +9,13 @@ namespace Repository
 {
     public class UsuarioRepository : DbConn
     {
-        public int CriarUsuario(UsuarioModel model)
+        public int CriarUsuario(UsuarioModel usuario)
         {
             string sqlQuery = @"INSERT INTO usuario 
                                 VALUES(0, @Nome, @Sobrenome, @Login, @Senha, @Email, @Telefone, @Idade); 
                                 SELECT LAST_INSERT_ID();";
 
-            return conn.Query<int>(sqlQuery, model).Single();
+            return conn.Query<int>(sqlQuery, usuario).Single();
         }
 
         public List<NivelPermissaoModel> GetNivelPermissao()
@@ -47,6 +47,24 @@ namespace Repository
         public void InsertPermissoesXUsuario(List<UsuarioXPermissaoModel> lstPermissoes)
         {
             conn.Insert(lstPermissoes);
+        }
+
+        public void testeInsert()
+        {
+            UsuarioModel model = new UsuarioModel()
+            {
+                Id = 0,
+                Email = "",
+                ConfirmarSenha = "",
+                Idade = 10,
+                Login = "",
+                Nome = "",
+                Senha = "",
+                Sobrenome = "",
+                Telefone = ""
+            };
+
+            CriarUsuario(model);
         }
     }
 }

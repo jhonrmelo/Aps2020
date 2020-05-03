@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtEnviado = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblEnviar = new System.Windows.Forms.Label();
             this.btnEnviar = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtRecebido = new System.Windows.Forms.TextBox();
             this.lblRecebido = new System.Windows.Forms.Label();
             this.lklVoltar = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtEnviado
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 67);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(396, 64);
-            this.textBox1.TabIndex = 0;
+            this.txtEnviado.Location = new System.Drawing.Point(12, 67);
+            this.txtEnviado.Multiline = true;
+            this.txtEnviado.Name = "txtEnviado";
+            this.txtEnviado.Size = new System.Drawing.Size(396, 64);
+            this.txtEnviado.TabIndex = 0;
             // 
             // label1
             // 
@@ -74,14 +74,15 @@
             this.btnEnviar.TabIndex = 3;
             this.btnEnviar.Text = "Enviar";
             this.btnEnviar.UseVisualStyleBackColor = true;
+            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
-            // textBox2
+            // txtRecebido
             // 
-            this.textBox2.Location = new System.Drawing.Point(12, 214);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(396, 181);
-            this.textBox2.TabIndex = 4;
+            this.txtRecebido.Location = new System.Drawing.Point(12, 214);
+            this.txtRecebido.Multiline = true;
+            this.txtRecebido.Name = "txtRecebido";
+            this.txtRecebido.Size = new System.Drawing.Size(396, 181);
+            this.txtRecebido.TabIndex = 4;
             // 
             // lblRecebido
             // 
@@ -111,11 +112,11 @@
             this.ClientSize = new System.Drawing.Size(420, 407);
             this.Controls.Add(this.lklVoltar);
             this.Controls.Add(this.lblRecebido);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtRecebido);
             this.Controls.Add(this.btnEnviar);
             this.Controls.Add(this.lblEnviar);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtEnviado);
             this.Name = "MensagemCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mensagens";
@@ -126,11 +127,11 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtEnviado;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblEnviar;
         private System.Windows.Forms.Button btnEnviar;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtRecebido;
         private System.Windows.Forms.Label lblRecebido;
         private System.Windows.Forms.LinkLabel lklVoltar;
     }

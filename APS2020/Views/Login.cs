@@ -22,6 +22,7 @@ namespace APS2020.Views
             cbbNivelPermissao.DataSource = _usuarioService.GetNivelPermissao();
             cbbNivelPermissao.ValueMember = "Id";
             cbbNivelPermissao.DisplayMember = "NomePermissao";
+
         }
         private void btnEntrar_Click(object sender, EventArgs e)
         {

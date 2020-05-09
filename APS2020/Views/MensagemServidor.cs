@@ -37,11 +37,25 @@ namespace APS2020.Views
             }, true);
 
         }
+
+        public void ShowStandardMessage(string text)
+        {
+            InvokeUtil.SafeInvoke(txtRecebido, delegate
+            {
+                txtRecebido.Text += MensagensHelper.AddMessage(text);
+            }, true);
+        }
+
         private void btnEnviar_Click(object sender, EventArgs e)
         {
             string textToSend = txtEnviado.Text;
             txtEnviado.Clear();
             _clienteServidorController.SendToClients(textToSend);
+        }
+
+        private void btnTerminar_Click(object sender, EventArgs e)
+        {
+            _clienteServidorController.DesconectAllClients();
         }
     }
 }

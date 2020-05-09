@@ -1,4 +1,10 @@
 ﻿using APS2020.Views;
+
+using Domain.Enum;
+using Domain.Models;
+
+using Org.BouncyCastle.Asn1.Ocsp;
+
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -47,7 +53,8 @@ namespace APS2020.ViewsController
 
                 buffer = new byte[current.ReceiveBufferSize];
 
-                var sendData = Encoding.ASCII.GetBytes("Servidor Conectado");
+                MensagemModel message = new MensagemModel(AcaoMensagemEnum.EnviarTexto, "Servidor Conectado");
+                var sendData = message.ToByteArray();
 
                 current.BeginSend(sendData, 0, sendData.Length, SocketFlags.None, SendCallback, current);
 
@@ -90,12 +97,8 @@ namespace APS2020.ViewsController
                 {
                     return;
                 }
-
-                byte[] recBuf = new byte[received];
-                Array.Copy(buffer, recBuf, received);
-                string message = Encoding.ASCII.GetString(recBuf);
-
-                _mensagemServidor.ShowMessageByTcp(message);
+                MensagemModel mensagem = new MensagemModel(buffer);
+                _verifyAcaoMensagem(mensagem, current);
 
                 current.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, current);
             }
@@ -110,15 +113,45 @@ namespace APS2020.ViewsController
             }
         }
 
-        public void SendToClients(string message)
+        public void SendToClients(string text)
         {
+            MensagemModel message = new MensagemModel(AcaoMensagemEnum.EnviarTexto, text);
+            byte[] buffer = message.ToByteArray();
+            _sendForAll(buffer);
+        }
 
-            byte[] buffer = Encoding.ASCII.GetBytes(message);
+        private void _verifyAcaoMensagem(MensagemModel message, Socket requestSocket)
+        {
+            if (message.Acao == AcaoMensagemEnum.EnviarTexto)
+            {
+                _mensagemServidor.ShowMessageByTcp(message.Text);
+            }
+            else if (message.Acao == AcaoMensagemEnum.Desconectar)
+            {
+                _removeSocket(requestSocket);
+            }
+        }
+
+        private void _removeSocket(Socket requestSocket)
+        {
+            _lstSocket.Remove(requestSocket);
+            _mensagemServidor.ShowStandardMessage("Um dos clientes se desconectou!");
+        }
+
+
+        public void DesconectAllClients()
+        {
+            MensagemModel message = new MensagemModel(AcaoMensagemEnum.TerminarTransmissao, string.Empty);
+            byte[] buffer = message.ToByteArray();
+            _sendForAll(buffer);
+
+        }
+        private void _sendForAll(byte[] buffer)
+        {
             foreach (var socket in _lstSocket)
             {
                 socket.BeginSend(buffer, 0, buffer.Length, SocketFlags.None, SendCallback, socket);
             }
         }
-
     }
 }

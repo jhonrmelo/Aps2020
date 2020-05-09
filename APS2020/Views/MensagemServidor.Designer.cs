@@ -35,6 +35,7 @@
             this.txtRecebido = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnEnviar = new System.Windows.Forms.Button();
+            this.btnTerminar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -105,11 +106,26 @@
             this.btnEnviar.UseVisualStyleBackColor = true;
             this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
+            // btnTerminar
+            // 
+            this.btnTerminar.BackColor = System.Drawing.Color.Firebrick;
+            this.btnTerminar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTerminar.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnTerminar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnTerminar.Location = new System.Drawing.Point(120, 421);
+            this.btnTerminar.Name = "btnTerminar";
+            this.btnTerminar.Size = new System.Drawing.Size(163, 39);
+            this.btnTerminar.TabIndex = 7;
+            this.btnTerminar.Text = "Terminar Transmissão";
+            this.btnTerminar.UseVisualStyleBackColor = false;
+            this.btnTerminar.Click += new System.EventHandler(this.btnTerminar_Click);
+            // 
             // MensagemServidor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(420, 407);
+            this.ClientSize = new System.Drawing.Size(420, 472);
+            this.Controls.Add(this.btnTerminar);
             this.Controls.Add(this.btnEnviar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtRecebido);
@@ -134,5 +150,6 @@
         private System.Windows.Forms.TextBox txtRecebido;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnEnviar;
+        private System.Windows.Forms.Button btnTerminar;
     }
 }

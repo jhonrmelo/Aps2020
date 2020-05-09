@@ -1,8 +1,13 @@
 ﻿using APS2020.Views;
+
+using Domain.Enum;
+using Domain.Models;
+
 using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+
 using Util;
 
 namespace APS2020.ViewsController
@@ -52,11 +57,14 @@ namespace APS2020.ViewsController
                     return;
                 }
 
+
                 byte[] recBuf = new byte[received];
                 Array.Copy(buffer, recBuf, received);
-                string message = Encoding.ASCII.GetString(recBuf);
 
-                _mensagemClienteView.ShowMessageByTcp(message);
+                MensagemModel mensagem = new MensagemModel(recBuf);
+
+                _verifyAcaoMensagem(mensagem);
+
                 clientSocket.BeginReceive(buffer, 0, buffer.Length, SocketFlags.None, ReceiveCallback, null);
             }
 
@@ -75,9 +83,10 @@ namespace APS2020.ViewsController
             _mensagemClienteView.ShowErrorDialog(message);
         }
 
-        public void SendToServer(string message)
+        public void SendToServer(string text)
         {
-            byte[] buffer = Encoding.ASCII.GetBytes(message);
+            MensagemModel message = new MensagemModel(AcaoMensagemEnum.EnviarTexto, text);
+            byte[] buffer = message.ToByteArray();
             clientSocket.BeginSend(buffer, 0, buffer.Length, SocketFlags.None, SendCallback, null);
         }
 
@@ -94,6 +103,26 @@ namespace APS2020.ViewsController
             catch (ObjectDisposedException ex)
             {
                 _callError(ex.Message);
+            }
+        }
+
+
+        public void SendDesconectRequest()
+        {
+            MensagemModel message = new MensagemModel(AcaoMensagemEnum.Desconectar, string.Empty);
+            byte[] buffer = message.ToByteArray();
+            clientSocket.BeginSend(buffer, 0, buffer.Length, SocketFlags.None, SendCallback, null);
+        }
+
+        private void _verifyAcaoMensagem(MensagemModel message)
+        {
+            if (message.Acao == AcaoMensagemEnum.EnviarTexto)
+            {
+                _mensagemClienteView.ShowMessageByTcp(message.Text);
+            }
+            else if (message.Acao == AcaoMensagemEnum.TerminarTransmissao)
+            {
+                _mensagemClienteView.Desconectar();
             }
         }
     }

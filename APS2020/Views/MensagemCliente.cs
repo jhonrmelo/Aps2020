@@ -1,8 +1,11 @@
 ﻿using APS2020.ViewsController;
 using APS2020.ViewsUitl;
+
 using Domain.Enum;
+
 using System;
 using System.Windows.Forms;
+
 using Util;
 
 namespace APS2020.Views
@@ -18,10 +21,19 @@ namespace APS2020.Views
 
         private void lklVoltar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Hide();
-            new MainMenu(NivelPermissaoEnum.Cliente).ShowDialog();
+            _clienteMensagemController.SendDesconectRequest();
+            _getBackMenu();
         }
 
+        private void _getBackMenu()
+        {
+            InvokeUtil.SafeInvoke(this, delegate
+            {
+                Hide();
+            }, true);
+
+            new MainMenu(NivelPermissaoEnum.Cliente).ShowDialog();
+        }
         public void ShowMessageByTcp(string text)
         {
             InvokeUtil.SafeInvoke(txtRecebido, delegate
@@ -41,6 +53,18 @@ namespace APS2020.Views
             txtEnviado.Clear();
             _clienteMensagemController.SendToServer(textToSend);
 
+        }
+
+        private void btnDesconectar_Click(object sender, EventArgs e)
+        {
+            Desconectar();
+        }
+
+        public void Desconectar()
+        {
+            _clienteMensagemController.SendDesconectRequest();
+            MessageBox.Show("Desconectado do servidor, voltando para o menu!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            _getBackMenu();
         }
     }
 }
